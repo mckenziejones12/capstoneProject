@@ -62,7 +62,6 @@ const PatientSchema = new Schema({
       "WI",
       "WY",
     ],
-    required: true,
   },
   phoneNumber: { type: String, required: true },
   DOB: { type: String, required: true },

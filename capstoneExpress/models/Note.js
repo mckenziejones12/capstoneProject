@@ -7,3 +7,5 @@ const NoteSchema = new Schema({
   text: { type: String },
   patientId: { type: Schema.Types.ObjectId, ref: "Patient" },
 });
+
+module.exports = mongoose.model("Note", NoteSchema);
