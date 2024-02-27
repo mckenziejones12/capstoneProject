@@ -8,6 +8,8 @@ const PatientSchema = new Schema({
   streetName: { type: String, required: true },
   city: { type: String, required: true },
   state: {
+    type: String,
+    required: true,
     enum: [
       "AL",
       "AK",
@@ -62,6 +64,7 @@ const PatientSchema = new Schema({
       "WI",
       "WY",
     ],
+    default: "AL",
   },
   phoneNumber: { type: String, required: true },
   DOB: { type: String, required: true },
