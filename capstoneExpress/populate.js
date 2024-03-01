@@ -92,7 +92,7 @@ async function createPatients() {
       "Miley",
       "Cyrus",
       "123 Music Way",
-      "Los Angelas",
+      "Los Angeles",
       "CA",
       "555-555-5555",
       "January 1, 1990"
