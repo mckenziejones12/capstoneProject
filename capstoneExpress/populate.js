@@ -29,11 +29,11 @@ async function main() {
   mongoose.connection.close();
 }
 
-async function userCreate(index, username, password, role) {
+async function userCreate(index, username, password, admin) {
   const userDetail = {
     username: username,
     password: password,
-    role: role,
+    admin: admin,
   };
   const user = new User(userDetail);
   users[index] = user;
@@ -80,8 +80,8 @@ async function noteCreate(index, timestamp, text, patientId) {
 
 async function createUsers() {
   await Promise.all([
-    userCreate(0, "johnsmith", "password1", "Admin"),
-    userCreate(1, "janedoe", "password2", "Employee"),
+    userCreate(0, "johnsmith", "password1", true),
+    userCreate(1, "janedoe", "password2", false),
   ]);
 }
 
