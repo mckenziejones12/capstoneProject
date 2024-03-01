@@ -6,7 +6,20 @@ const Note = require("../models/Note");
 
 // (include notes for individual patients as well)
 exports.patient_list_get = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: patient_list_get");
+  let allPatients = [];
+  let allNotes = [];
+
+  try {
+    allPatients = await Patient.find().sort({ lastName: 1 });
+    console.log(allPatients);
+    allNotes = await Note.find();
+    console.log(allNotes);
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occured",
+      error: error.message,
+    });
+  }
 });
 
 exports.single_patient_get = asyncHandler(async (req, res, next) => {
