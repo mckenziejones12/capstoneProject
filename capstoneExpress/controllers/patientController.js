@@ -100,6 +100,7 @@ exports.patient_create_post = [
     });
     // If create new patient form not completed correctly, throw error.
     if (!errors.isEmpty()) {
+      console.log("do we go in here");
       res.status(400).json({
         error: res.status(400).json({ errors: errors.array() }),
       });
@@ -113,9 +114,69 @@ exports.patient_create_post = [
   }),
 ];
 
-exports.patient_update = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: patient_update");
-});
+exports.patient_update = [
+  // Validate and sanitize form fields.
+  body("firstName", "First name is required.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("lastName", "Last name is required.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("streetName", "Street name is required.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("city", "City is required.").trim().isLength({ min: 1 }).escape(),
+  body("state", "State is required.").trim().isLength({ min: 2 }).escape(),
+  body(
+    "phoneNumber",
+    "A 10 digit phone number is required. Please write in the form of XXX-XXX-XXXX"
+  )
+    .trim()
+    .isLength({ min: 12 })
+    .escape(),
+  body(
+    "d_birth",
+    "Date of birth is required. Please write in the form of MM-DD-YYYY."
+  )
+    .trim()
+    .isLength({ min: 10 })
+    .escape(),
+  // Process request after data is escaped/trimmed
+  asyncHandler(async (req, res, next) => {
+    console.log("update message test in postman: ", req.params.patientid);
+
+    const errors = validationResult(req);
+    console.log("Errors: ", errors);
+
+    if (!errors.isEmpty()) {
+      console.log("is it doing anythingggg?");
+      res.status(400).json({
+        error: res.status(400).json({ errors: errors.array() }),
+      });
+    } else {
+      console.log(req.body);
+      // Form data valid. Update and save.
+      const updatedPatient = await Patient.findByIdAndUpdate(
+        req.params.patientid,
+        {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          streetName: req.body.streetName,
+          city: req.body.city,
+          state: req.body.state,
+          phoneNumber: req.body.phoneNumber,
+          d_birth: req.body.d_birth,
+          _id: req.body.patientId,
+        }
+      ).exec();
+      res.status(204).send();
+      console.log("Updated patient: ", updatedPatient);
+    }
+  }),
+];
 
 exports.patient_delete = asyncHandler(async (req, res, next) => {
   console.log("Not Implemented: patient_delete");
