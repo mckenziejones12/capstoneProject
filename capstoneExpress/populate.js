@@ -122,7 +122,19 @@ async function createPatients() {
 
 async function createNotes() {
   await Promise.all([
-    noteCreate(0, new Date("2/12/2024"), "first note ever written", users[0]),
-    noteCreate(1, new Date("2/25/2024"), "is this a legit note?", users[1]),
+    noteCreate(
+      0,
+      new Date("2/12/2024"),
+      "first note ever written for Miley",
+      patients[0]
+    ),
+    noteCreate(
+      1,
+      new Date("2/25/2024"),
+      "is this a legit note for Shrimp?",
+      patients[1]
+    ),
+    noteCreate(2, new Date("3/7/2024"), "Smoke Show has a note now too!"),
+    patients[2],
   ]);
 }
