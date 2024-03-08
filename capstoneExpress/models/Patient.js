@@ -67,7 +67,7 @@ const PatientSchema = new Schema({
     default: "AL",
   },
   phoneNumber: { type: String, required: true },
-  DOB: { type: String, required: true },
+  d_birth: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Patient", PatientSchema);

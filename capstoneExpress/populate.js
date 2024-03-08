@@ -49,7 +49,7 @@ async function patientCreate(
   city,
   state,
   phoneNumber,
-  DOB
+  d_birth
 ) {
   const patientDetail = {
     firstName: firstName,
@@ -58,7 +58,7 @@ async function patientCreate(
     city: city,
     state: state,
     phoneNumber: phoneNumber,
-    DOB: DOB,
+    d_birth: d_birth,
   };
   const patient = new Patient(patientDetail);
   patients[index] = patient;
@@ -95,7 +95,7 @@ async function createPatients() {
       "Los Angeles",
       "CA",
       "555-555-5555",
-      "January 1, 1990"
+      "11-23-1992"
     ),
     patientCreate(
       1,
@@ -105,7 +105,7 @@ async function createPatients() {
       "Golden",
       "CO",
       "123-123-1234",
-      "February 22, 2021"
+      "02-22-2021"
     ),
     patientCreate(
       2,
@@ -115,7 +115,7 @@ async function createPatients() {
       "Austin",
       "TX",
       "333-444-5555",
-      "July 12, 1997"
+      "07-12-1997"
     ),
   ]);
 }
@@ -124,17 +124,21 @@ async function createNotes() {
   await Promise.all([
     noteCreate(
       0,
-      new Date("2/12/2024"),
+      new Date("2-12-2024"),
       "first note ever written for Miley",
       patients[0]
     ),
     noteCreate(
       1,
-      new Date("2/25/2024"),
+      new Date("2-25-2024"),
       "is this a legit note for Shrimp?",
       patients[1]
     ),
-    noteCreate(2, new Date("3/7/2024"), "Smoke Show has a note now too!"),
-    patients[2],
+    noteCreate(
+      2,
+      new Date("3-7-2024"),
+      "Smoke Show has a note now too!",
+      patients[2]
+    ),
   ]);
 }
