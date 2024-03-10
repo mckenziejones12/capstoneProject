@@ -7,6 +7,7 @@ const Note = require("../models/Note");
 
 // (include notes for individual patients as well)
 exports.patient_list_get = asyncHandler(async (req, res, next) => {
+  console.log("in here");
   let allPatients = [];
   let allNotes = [];
 
@@ -15,9 +16,7 @@ exports.patient_list_get = asyncHandler(async (req, res, next) => {
     console.log(allPatients);
     allNotes = await Note.find();
     console.log(allNotes);
-    return res.status(200).json({
-      message: "Patients listed successfully.",
-    });
+    return res.status(200).json(allPatients);
   } catch (error) {
     res.status(500).json({
       message: "An error occured",
@@ -31,7 +30,7 @@ exports.single_patient_get = asyncHandler(async (req, res, next) => {
     // Get details of Patient and all associated notes (in parallel)
     const [patient, notesForPatient] = await Promise.all([
       Patient.findById(req.params.patientid).exec(),
-      Note.find({ patientId: req.params.patientid }, "text").exec(),
+      Note.find({ patientId: req.params.patientid }, "text timestamp").exec(),
     ]);
     console.log("req.params.patientid: ", req.params.patientid);
     console.log("patient: ", patient),
@@ -146,11 +145,8 @@ exports.patient_update = [
     .escape(),
   // Process request after data is escaped/trimmed
   asyncHandler(async (req, res, next) => {
-    console.log("update message test in postman: ", req.params.patientid);
-
     const errors = validationResult(req);
     console.log("Errors: ", errors);
-
     if (!errors.isEmpty()) {
       console.log("is it doing anythingggg?");
       res.status(400).json({
@@ -173,23 +169,70 @@ exports.patient_update = [
         }
       ).exec();
       res.status(204).send();
+      q;
       console.log("Updated patient: ", updatedPatient);
     }
   }),
 ];
 
 exports.patient_delete = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: patient_delete");
+  try {
+    const [deletedPatient, deletedPatientNotes] = await Promise.all([
+      Patient.findByIdAndDelete(req.params.patientid).exec(),
+      Note.deleteMany({ patientId: req.params.patientid }).exec(),
+    ]);
+    console.log(deletedPatient);
+    console.log(deletedPatientNotes);
+    res.status(200).send("Patient successfully deleted.");
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred.",
+      error: error.message,
+    });
+  }
 });
 
 exports.note_create_post = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: note_create_post");
+  try {
+    const note = new Note({
+      timestamp: new Date(),
+      text: req.body.text,
+      patientId: req.body.patientid,
+      _id: req.params.noteid,
+    });
+    await note.save();
+    res.status(200).json({
+      message: "New note completed successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred.",
+      error: error.message,
+    });
+  }
 });
 
 exports.note_update = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: note_update");
+  try {
+    const updatedNote = await Note.findByIdAndUpdate(req.params.noteid, {
+      timestamp: new Date(),
+      text: req.body.text,
+      patientId: req.params.patientid,
+    });
+    console.log(updatedNote);
+    res.status(200).json({
+      message: "Note updated successfully.",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred.",
+      error: error.message,
+    });
+  }
 });
 
 exports.note_delete = asyncHandler(async (req, res, next) => {
-  console.log("Not Implemented: note_delete");
+  const deletedNote = await Note.findByIdAndDelete(req.params.noteid);
+  res.status(200).send("Note deleted successfully.");
+  console.log(deletedNote);
 });
