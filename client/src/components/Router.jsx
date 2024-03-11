@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
-import PatientList from "./PatientList";
+import PatientDetailPage from "./PatientDetailPage";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -9,8 +9,8 @@ const Router = () => {
       element: <App />,
     },
     {
-      path: "patients",
-      element: <PatientList />,
+      path: "patients/:patientId",
+      element: <PatientDetailPage />,
     },
   ]);
 

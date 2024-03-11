@@ -1,8 +1,8 @@
 import React from "react";
-import PatientList from "./components/PatientList";
+import Homepage from "./components/Homepage";
 
 function App() {
-  return <PatientList />;
+  return <Homepage />;
 }
 
 export default App;

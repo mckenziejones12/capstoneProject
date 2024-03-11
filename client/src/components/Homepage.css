@@ -13,3 +13,13 @@ td {
 .secondColumn {
   border-left: 1px solid black;
 }
+.singlePatient:hover {
+  cursor: pointer;
+  background-color: gold;
+}
+
+#pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
