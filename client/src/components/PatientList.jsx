@@ -23,13 +23,14 @@ const PatientList = () => {
   return (
     <table>
       <tr id="patientListHeader">
-        <th>Last Name</th> <th>First Name</th>
+        <th>Last Name</th>
+        <th className="secondColumn">First Name</th>
       </tr>
       {patientList.map((patient) => {
         return (
           <tr key={patient._id}>
             <td>{patient.lastName}</td>
-            <td>{patient.firstName}</td>
+            <td className="secondColumn">{patient.firstName}</td>
           </tr>
         );
       })}
