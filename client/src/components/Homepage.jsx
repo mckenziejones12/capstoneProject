@@ -4,11 +4,13 @@ import { useNavigate } from "react-router";
 import { NavBar } from "./NavBar";
 import { Button } from "./Button";
 import { Footer } from "./Footer";
+import { PatientFormModal } from "./PatientFormModal";
 import "./Homepage.css";
 
 export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState();
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +30,10 @@ export const Homepage = () => {
   const handlePatientClick = (patientId) => {
     navigate(`patients/${patientId}`);
   };
+
+  if (isLoading === true) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <div id="pageContent">
@@ -51,7 +57,13 @@ export const Homepage = () => {
           );
         })}
       </table>
-      <Button type="add">Add New Patient</Button>
+
+      <Button type="add" onClick={() => setShowModal(true)}>
+        Add New Patient
+      </Button>
+
+      <PatientFormModal showModal={showModal} setShowModal={setShowModal} />
+
       <Footer />
     </div>
   );

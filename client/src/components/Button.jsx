@@ -1,7 +1,7 @@
 import "./Button.css";
 import classNames from "classnames";
 
-export const Button = ({ type, children }) => {
+export const Button = ({ type, children, onClick }) => {
   const btnClass = classNames({
     button: true,
     "crud-delete": type === "delete",
@@ -10,5 +10,9 @@ export const Button = ({ type, children }) => {
     "crud-get": type === "search",
   });
 
-  return <button className={btnClass}>{children}</button>;
+  return (
+    <button className={btnClass} onClick={onClick}>
+      {children}
+    </button>
+  );
 };

@@ -7,7 +7,7 @@ export const NavBar = () => {
     <div id="header">
       <div id="title">Capstone Records</div>
       <div id="searchbar">
-        <input type="text" placeholder="Find by last name" />
+        <input type="text" name="findPatient" placeholder="Find by last name" />
         <Button type="search">Find</Button>
       </div>
     </div>
