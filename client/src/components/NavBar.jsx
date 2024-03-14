@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 
 const NavBar = () => {
   return (
@@ -6,7 +7,7 @@ const NavBar = () => {
       <div id="title">Capstone Dental</div>
       <div id="searchbar">
         <input type="text" placeholder="Search patient by last name" />
-        <button>Search</button>
+        <Button type="search">Search</Button>
       </div>
     </div>
   );

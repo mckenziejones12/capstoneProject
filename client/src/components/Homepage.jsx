@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import NavBar from "./NavBar";
+import { Button } from "./Button";
 import "./Homepage.css";
 
 const Homepage = () => {
@@ -48,6 +49,9 @@ const Homepage = () => {
           );
         })}
       </table>
+      <Button type="add">Add New Patient</Button>
+      <Button type="update">Update</Button>
+      <Button type="delete">Delete patient</Button>
     </div>
   );
 };

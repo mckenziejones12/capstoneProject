@@ -1,0 +1,25 @@
+.button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  letter-spacing: 1px;
+}
+
+.add {
+  background-color: rgb(46, 115, 226);
+  max-width: 250px;
+}
+.update {
+  background-color: lightgrey;
+  width: 150px;
+}
+.delete {
+  border: 1px solid red;
+  background-color: white;
+  color: red;
+  width: 150px;
+}
+.search {
+  background-color: rgb(116, 174, 230);
+}
