@@ -4,22 +4,33 @@
   border-radius: 5px;
   padding: 8px;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
-.add {
-  background-color: rgb(46, 115, 226);
+.crud-add {
+  background-color: dodgerblue;
   max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
 }
-.update {
+.crud-update {
   background-color: lightgrey;
   width: 150px;
 }
-.delete {
+.crud-delete {
   border: 1px solid red;
   background-color: white;
   color: red;
   width: 150px;
 }
-.search {
-  background-color: rgb(116, 174, 230);
+.crud-get {
+  color: whitesmoke;
+  background-color: rgb(176, 207, 224);
+  border: none;
+  font-weight: 600;
+}
+.crud-get:hover {
+  color: dodgerblue;
+  background-color: whitesmoke;
 }

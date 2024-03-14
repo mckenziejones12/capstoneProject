@@ -1,0 +1,41 @@
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 50px 40px 50px;
+  align-items: center;
+  background-color: dodgerblue;
+  box-shadow: 4px 5px 5px rgb(245, 200, 158);
+}
+
+#title {
+  font-size: 32px;
+  color: whitesmoke;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+#searchbar {
+  display: flex;
+  gap: 5px;
+}
+input {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+  color: darkgray;
+}
+
+@media (max-width: 700px) {
+  #header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  #title {
+    text-align: center;
+  }
+} ;

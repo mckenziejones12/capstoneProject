@@ -4,10 +4,10 @@ import classNames from "classnames";
 export const Button = ({ type, children }) => {
   const btnClass = classNames({
     button: true,
-    "button delete": type === "delete",
-    "button add": type === "add",
-    "button update": type === "update",
-    "button search": type === "search",
+    "crud-delete": type === "delete",
+    "crud-add": type === "add",
+    "crud-update": type === "update",
+    "crud-get": type === "search",
   });
 
   return <button className={btnClass}>{children}</button>;

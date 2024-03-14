@@ -1,16 +1,15 @@
 import React from "react";
 import { Button } from "./Button";
+import "./NavBar.css";
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <div id="header">
-      <div id="title">Capstone Dental</div>
+      <div id="title">Capstone Records</div>
       <div id="searchbar">
-        <input type="text" placeholder="Search patient by last name" />
-        <Button type="search">Search</Button>
+        <input type="text" placeholder="Find by last name" />
+        <Button type="search">Find</Button>
       </div>
     </div>
   );
 };
-
-export default NavBar;

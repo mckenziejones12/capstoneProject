@@ -1,7 +1,8 @@
 table {
   border: 1px solid black;
   border-collapse: collapse;
-  width: 50%;
+  width: 80%;
+  margin: 70px auto 50px auto;
 }
 th,
 tr,
@@ -9,6 +10,10 @@ td {
   border-bottom: 1px solid black;
   text-align: left;
   padding: 5px;
+}
+.data-row:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 .secondColumn {
   border-left: 1px solid black;
@@ -21,5 +26,4 @@ td {
 #pageContent {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }

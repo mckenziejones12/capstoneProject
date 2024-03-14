@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 
-const PatientDetailPage = () => {
+export const PatientDetailPage = () => {
   const { patientId } = useParams();
   console.log("PatientId: ", patientId);
 
@@ -31,5 +31,3 @@ const PatientDetailPage = () => {
     </div>
   );
 };
-
-export default PatientDetailPage;

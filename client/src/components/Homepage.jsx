@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import NavBar from "./NavBar";
+import { NavBar } from "./NavBar";
 import { Button } from "./Button";
+import { Footer } from "./Footer";
 import "./Homepage.css";
 
-const Homepage = () => {
+export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Homepage = () => {
         {patientList.map((patient) => {
           return (
             <tr
+              className="data-row"
               key={patient._id}
               onClick={() => handlePatientClick(patient._id)}
             >
@@ -50,10 +52,7 @@ const Homepage = () => {
         })}
       </table>
       <Button type="add">Add New Patient</Button>
-      <Button type="update">Update</Button>
-      <Button type="delete">Delete patient</Button>
+      <Footer />
     </div>
   );
 };
-
-export default Homepage;
