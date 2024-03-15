@@ -40,12 +40,12 @@ h3 {
 
 #addModalBtn {
   margin-top: 10px;
-  padding: 10px;
   border: 2px solid dodgerblue;
   color: dodgerblue;
   background-color: white;
   border-radius: 5px;
   letter-spacing: 1px;
+  padding: 5px;
 }
 #addModalBtn:hover {
   border: 2px solid rgb(245, 200, 158);
@@ -68,7 +68,7 @@ select {
   align-self: flex-end;
 }
 #closeModalBtn:hover {
-  color: red;
+  color: rgb(177, 28, 28);
   cursor: pointer;
 }
 
