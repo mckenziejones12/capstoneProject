@@ -21,7 +21,9 @@ exports.patient_list_get = asyncHandler(async (req, res, next) => {
   let allNotes = [];
 
   try {
-    allPatients = await Patient.find().sort({ lastName: 1 });
+    allPatients = await Patient.find()
+      .collation({ locale: "en" })
+      .sort({ lastName: 1 });
     console.log(allPatients);
     allNotes = await Note.find();
     console.log(allNotes);
