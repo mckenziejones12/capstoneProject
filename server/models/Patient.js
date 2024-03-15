@@ -47,7 +47,6 @@ const PatientSchema = new Schema({
       "NY",
       "NC",
       "ND",
-      "MP",
       "OH",
       "OK",
       "OR",

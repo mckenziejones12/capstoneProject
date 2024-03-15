@@ -4,13 +4,14 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   width: 400px;
-  background-color: whitesmoke;
+  max-height: 600px;
   z-index: 1;
+  background-color: whitesmoke;
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 2px -3px 4px rgb(245, 200, 158);
 }
@@ -27,6 +28,9 @@ form {
   gap: 10px;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
+  padding: 0px;
+  border-bottom: none;
 }
 h3 {
   text-align: center;
@@ -48,8 +52,13 @@ h3 {
   cursor: pointer;
   color: rgb(245, 200, 158);
 }
-input {
+input,
+select {
   color: rgb(93, 93, 93);
+  height: 30px;
+  padding: 5px;
+  border-color: darkgrey;
+  border-radius: 5px;
 }
 
 #closeModalBtn {
@@ -61,4 +70,10 @@ input {
 #closeModalBtn:hover {
   color: red;
   cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  #addNewPatientForm {
+    width: 250px;
+  }
 }
