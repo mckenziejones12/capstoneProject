@@ -11,6 +11,8 @@ export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [stale, setStale] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +26,9 @@ export const Homepage = () => {
         console.log(data);
         setPatientList(data);
         setIsLoading(false);
+        setStale(false);
       });
-  }, []);
+  }, [stale]);
 
   const handlePatientClick = (patientId) => {
     navigate(`patients/${patientId}`);
@@ -36,35 +39,43 @@ export const Homepage = () => {
   }
 
   return (
-    <div id="pageContent">
-      <NavBar />
+    <>
+      <div id="pageContent">
+        <NavBar />
 
-      <table>
-        <tr id="patientListHeader">
-          <th>Last Name</th>
-          <th className="secondColumn">First Name</th>
-        </tr>
-        {patientList.map((patient) => {
-          return (
-            <tr
-              className="data-row"
-              key={patient._id}
-              onClick={() => handlePatientClick(patient._id)}
-            >
-              <td>{patient.lastName}</td>
-              <td className="secondColumn">{patient.firstName}</td>
+        <table>
+          <tbody>
+            <tr id="patientListHeader">
+              <th>Last Name</th>
+              <th className="secondColumn">First Name</th>
             </tr>
-          );
-        })}
-      </table>
+            {patientList.map((patient) => {
+              return (
+                <tr
+                  className="data-row"
+                  key={patient._id}
+                  onClick={() => handlePatientClick(patient._id)}
+                >
+                  <td>{patient.lastName}</td>
+                  <td className="secondColumn">{patient.firstName}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
-      <Button type="add" onClick={() => setShowModal(true)}>
-        Add New Patient
-      </Button>
+        <Button type="add" onClick={() => setShowModal(true)}>
+          Add New Patient
+        </Button>
 
-      <PatientFormModal showModal={showModal} setShowModal={setShowModal} />
+        <PatientFormModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          setStale={setStale}
+        />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };

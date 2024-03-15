@@ -7,7 +7,16 @@ const Note = require("../models/Note");
 
 // (include notes for individual patients as well)
 exports.patient_list_get = asyncHandler(async (req, res, next) => {
-  console.log("in here");
+  // enable CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
+
   let allPatients = [];
   let allNotes = [];
 

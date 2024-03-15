@@ -1,8 +1,32 @@
 import "./PatientFormModal.css";
+import { useState } from "react";
+import axios from "axios";
 
-export const PatientFormModal = ({ showModal, setShowModal }) => {
+export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
   console.log(showModal);
   if (!showModal) return null;
+  const [newPatient, setNewPatient] = useState({
+    firstName: "",
+    lastName: "",
+    streetName: "",
+    city: "",
+    state: "",
+    phoneNumber: "",
+    d_birth: "",
+  });
+
+  const handleInput = (e) => {
+    setNewPatient({ ...newPatient, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    axios.post("/api/users/patients", { ...newPatient }).then((res) => {
+      console.log(res.data);
+      setStale(true);
+    });
+    setShowModal(false);
+  };
 
   return (
     <div id="addNewPatientForm" style={{ marborder: "1px solid black" }}>
@@ -10,26 +34,50 @@ export const PatientFormModal = ({ showModal, setShowModal }) => {
         x
       </div>
       <h3>Create New Patient</h3>
-      <form action="" method="POST">
-        <tr className="inputField">
-          <label htmlFor="fname">First Name: </label>
-          <input type="text" id="fname" name="fname" />
-        </tr>
-        <tr className="inputField">
-          <label htmlFor="lname">Last Name: </label>
-          <input type="text" id="lname" name="lname" />
-        </tr>
-        <tr className="inputField">
-          <label htmlFor="street">Street Address: </label>
-          <input type="text" id="street" name="street" />
-        </tr>
-        <tr className="inputField">
+      <form action="" method="POST" onSubmit={handleSubmit}>
+        <div className="inputField">
+          <label htmlFor="firstName">First Name: </label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            onChange={handleInput}
+            // value={newPatient.firstName}
+          />
+        </div>
+        <div className="inputField">
+          <label htmlFor="lastName">Last Name: </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            onChange={handleInput}
+            // value={newPatient.lastName}
+          />
+        </div>
+        <div className="inputField">
+          <label htmlFor="streetName">Street Address: </label>
+          <input
+            type="text"
+            id="streetName"
+            name="streetName"
+            onChange={handleInput}
+            // value={newPatient.streetName}
+          />
+        </div>
+        <div className="inputField">
           <label htmlFor="city">City: </label>
-          <input type="text" id="city" name="city" />
-        </tr>
-        <tr className="inputField">
+          <input
+            type="text"
+            id="city"
+            name="city"
+            onChange={handleInput}
+            // value={newPatient.city}
+          />
+        </div>
+        <div className="inputField">
           <label htmlFor="state">State: </label>
-          <select id="states">
+          <select id="state" name="state" onChange={handleInput}>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AZ">AZ</option>
@@ -81,18 +129,30 @@ export const PatientFormModal = ({ showModal, setShowModal }) => {
             <option value="WI">WI</option>
             <option value="WY">WY</option>
           </select>
-        </tr>
-        <tr className="inputField">
-          <label htmlFor="number">Phone Number: </label>
-          <input type="text" id="number" name="number" />
-        </tr>
-        <tr className="inputField">
-          <label htmlFor="dob">Date of Birth: </label>
-          <input type="date" id="dob" name="dob" />
-        </tr>
-        <div id="addModalBtn" onClick={() => setShowModal(false)}>
-          Add Patient
         </div>
+        <div className="inputField">
+          <label htmlFor="phoneNumber">Phone Number: </label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            onChange={handleInput}
+            // value={newPatient.phoneNumber}
+          />
+        </div>
+        <div className="inputField">
+          <label htmlFor="d_birth">Date of Birth: </label>
+          <input
+            type="date"
+            id="d_birth"
+            name="d_birth"
+            onChange={handleInput}
+            // value={newPatient.d_birth}
+          />
+        </div>
+        <button type="submit" value="Add Patient" id="addModalBtn">
+          Add Patient
+        </button>
       </form>
     </div>
   );
