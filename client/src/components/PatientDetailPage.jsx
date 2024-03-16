@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import "./PatientDetailPage.css";
 
 export const PatientDetailPage = () => {
   const { patientId } = useParams();
@@ -27,7 +28,38 @@ export const PatientDetailPage = () => {
 
   return (
     <div>
-      <p>{singlePatient.firstName}</p>
+      <table className="personalInfo">
+        <tbody>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">First Name: </th>
+            <td className="fieldIntdut">{singlePatient.firstName}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">Last Name: </th>
+            <td className="fieldIntdut">{singlePatient.lastName}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">Street Name: </th>
+            <td className="fieldInput">{singlePatient.streetName}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">City: </th>
+            <td className="fieldInput">{singlePatient.city}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">State: </th>
+            <td className="fieldInput">{singlePatient.state}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">Phone Number: </th>
+            <td className="fieldInput">{singlePatient.phoneNumber}</td>
+          </tr>
+          <tr className="fieldCategory">
+            <th className="fieldTitle">Date of Birth: </th>
+            <td className="fieldInput">{singlePatient.d_birth}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
