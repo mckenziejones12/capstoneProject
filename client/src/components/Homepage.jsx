@@ -37,10 +37,31 @@ export const Homepage = () => {
   if (isLoading === true) {
     return <div className="loading">Loading...</div>;
   }
+  if (patientList.length === 0) {
+    return (
+      <>
+        <div className="pageContent">
+          <NavBar />
+          <div className="noPatients">
+            There are no patient records. Add your first patient.
+          </div>
+          <Button type="add" onClick={() => setShowModal(true)}>
+            Add New Patient
+          </Button>
+          <PatientFormModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setStale={setStale}
+          />
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
-      <div id="pageContent">
+      <div className="pageContent">
         <NavBar />
 
         <table>
@@ -73,9 +94,8 @@ export const Homepage = () => {
           setShowModal={setShowModal}
           setStale={setStale}
         />
-
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

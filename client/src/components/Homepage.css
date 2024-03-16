@@ -23,7 +23,11 @@ td {
   background-color: gold;
 }
 
-#pageContent {
+.pageContent {
   display: flex;
   flex-direction: column;
+}
+.noPatients {
+  text-align: center;
+  margin: 100px;
 }
