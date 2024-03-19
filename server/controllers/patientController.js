@@ -51,7 +51,7 @@ exports.single_patient_get = asyncHandler(async (req, res, next) => {
         message: "Patient not found.",
       });
     }
-    res.status(200).json(patient);
+    res.status(200).json({ patient, notesForPatient });
   } catch (error) {
     res.status(500).json({
       message: "An error has occured",

@@ -8,6 +8,7 @@ export const PatientDetailPage = () => {
   console.log("PatientId: ", patientId);
 
   const [singlePatient, setSinglePatient] = useState(null);
+  const [patientNotes, setPatientNotes] = useState([]);
   const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
@@ -18,8 +19,12 @@ export const PatientDetailPage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        setSinglePatient(data);
+        const patientInfo = data.patient;
+        const patientNotes = data.notesForPatient;
+        console.log("Patient Info: ", patientInfo);
+        console.log("Patient Notes: ", patientNotes);
+        setSinglePatient(patientInfo);
+        setPatientNotes(patientNotes);
         setIsLoading(false);
       });
   }, []);
@@ -58,6 +63,24 @@ export const PatientDetailPage = () => {
             <th className="fieldTitle">Date of Birth: </th>
             <td className="fieldInput">{singlePatient.d_birth}</td>
           </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <tbody>
+          <tr id="patientNotesHeader">
+            <th>Date</th>
+            <th className="secondColumn">Note</th>
+          </tr>
+          {patientNotes.map((note) => {
+            const noteDate = new Date(note.timestamp).toLocaleDateString();
+            return (
+              <tr className="data-row" key={note._id}>
+                <td>{noteDate}</td>
+                <td className="secondColumn">{note.text}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
