@@ -1,1 +1,30 @@
+.personalInfo {
+  width: 400px;
+  margin: 70px 70px 0px;
+  display: inline-table;
+}
 
+.patientNotes {
+  width: 700px;
+  margin: 70px 70px 70px 70px;
+  display: inline-table;
+}
+
+.firstColumn {
+  width: 100px;
+}
+#patientDetailContent {
+  display: inline-table;
+}
+
+@media (max-width: 1380px) {
+  #patientDetailContent {
+    text-align: center;
+  }
+}
+
+@media (max-width: 850px) {
+  .patientNotes {
+    width: 400px;
+  }
+}

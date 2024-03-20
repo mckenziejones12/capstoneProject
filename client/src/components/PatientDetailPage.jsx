@@ -32,7 +32,7 @@ export const PatientDetailPage = () => {
   if (!singlePatient || isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div id="patientDetailContent">
       <table className="personalInfo">
         <tbody>
           <tr className="fieldCategory">
@@ -66,17 +66,17 @@ export const PatientDetailPage = () => {
         </tbody>
       </table>
 
-      <table>
+      <table className="patientNotes">
         <tbody>
           <tr id="patientNotesHeader">
-            <th>Date</th>
+            <th className="firstColumn">Date</th>
             <th className="secondColumn">Note</th>
           </tr>
           {patientNotes.map((note) => {
             const noteDate = new Date(note.timestamp).toLocaleDateString();
             return (
               <tr className="data-row" key={note._id}>
-                <td>{noteDate}</td>
+                <td className="firstColumn">{noteDate}</td>
                 <td className="secondColumn">{note.text}</td>
               </tr>
             );
