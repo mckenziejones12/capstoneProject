@@ -1,3 +1,7 @@
+#patientDetailContent {
+  text-align: center;
+}
+
 .personalInfo {
   width: 400px;
   margin: 70px 70px 0px;
@@ -13,10 +17,9 @@
 .firstColumn {
   width: 100px;
 }
-#patientDetailContent {
-  display: inline-table;
+.createNoteBtn {
+  margin: 70px auto;
 }
-
 @media (max-width: 1380px) {
   #patientDetailContent {
     text-align: center;

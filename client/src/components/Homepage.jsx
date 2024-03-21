@@ -5,6 +5,7 @@ import { NavBar } from "./NavBar";
 import { Button } from "./Button";
 import { Footer } from "./Footer";
 import { PatientFormModal } from "./PatientFormModal";
+import { Layout } from "./Layout";
 import "./Homepage.css";
 
 export const Homepage = () => {
@@ -40,62 +41,61 @@ export const Homepage = () => {
   if (patientList.length === 0) {
     return (
       <>
-        <div className="pageContent">
-          <NavBar />
-          <div className="noPatients">
-            There are no patient records. Add your first patient.
+        <Layout>
+          <div className="pageContent">
+            <div className="noPatients">
+              There are no patient records. Add your first patient.
+            </div>
+            <Button type="add" onClick={() => setShowModal(true)}>
+              Add New Patient
+            </Button>
+            <PatientFormModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              setStale={setStale}
+            />
           </div>
-          <Button type="add" onClick={() => setShowModal(true)}>
-            Add New Patient
-          </Button>
-          <PatientFormModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            setStale={setStale}
-          />
-        </div>
-        <Footer />
+        </Layout>
       </>
     );
   }
 
   return (
     <>
-      <div className="pageContent">
-        <NavBar />
+      <Layout>
+        <div className="pageContent">
+          <table>
+            <tbody>
+              <tr id="patientListHeader">
+                <th>Last Name</th>
+                <th className="secondColumn">First Name</th>
+              </tr>
+              {patientList.map((patient) => {
+                return (
+                  <tr
+                    className="data-row"
+                    key={patient._id}
+                    onClick={() => handlePatientClick(patient._id)}
+                  >
+                    <td>{patient.lastName}</td>
+                    <td className="secondColumn">{patient.firstName}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
 
-        <table>
-          <tbody>
-            <tr id="patientListHeader">
-              <th>Last Name</th>
-              <th className="secondColumn">First Name</th>
-            </tr>
-            {patientList.map((patient) => {
-              return (
-                <tr
-                  className="data-row"
-                  key={patient._id}
-                  onClick={() => handlePatientClick(patient._id)}
-                >
-                  <td>{patient.lastName}</td>
-                  <td className="secondColumn">{patient.firstName}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+          <Button type="add" onClick={() => setShowModal(true)}>
+            Add New Patient
+          </Button>
 
-        <Button type="add" onClick={() => setShowModal(true)}>
-          Add New Patient
-        </Button>
-
-        <PatientFormModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          setStale={setStale}
-        />
-      </div>
-      <Footer />
+          <PatientFormModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setStale={setStale}
+          />
+        </div>
+      </Layout>
     </>
   );
 };
