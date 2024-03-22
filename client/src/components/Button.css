@@ -23,6 +23,10 @@
   color: red;
   width: 150px;
 }
+.crud-delete:hover {
+  background-color: red;
+  color: white;
+}
 .crud-get {
   color: whitesmoke;
   background-color: rgb(176, 207, 224);
