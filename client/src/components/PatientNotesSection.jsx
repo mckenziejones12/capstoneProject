@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { Button } from "./Button";
+import { NoteModal } from "./NoteModal";
 import "./PatientNotesSection.css";
 
 export const PatientNotesSection = () => {
@@ -11,6 +12,7 @@ export const PatientNotesSection = () => {
   const [patientNotes, setPatientNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [stale, setStale] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,9 +29,9 @@ export const PatientNotesSection = () => {
         setSinglePatient(patientInfo);
         setPatientNotes(patientNotes);
         setIsLoading(false);
-        setShowModal(false);
+        setStale(false);
       });
-  }, []);
+  }, [stale]);
 
   // Check that the data is loaded
   if (isLoading || !singlePatient) return <div>Loading...</div>;
@@ -45,6 +47,11 @@ export const PatientNotesSection = () => {
           <Button type="add" onClick={() => setShowModal(true)}>
             Create New Note
           </Button>
+          <NoteModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setStale={setStale}
+          />
         </div>
       </div>
     );
@@ -73,6 +80,11 @@ export const PatientNotesSection = () => {
         <Button type="add" onClick={() => setShowModal(true)}>
           Create New Note
         </Button>
+        <NoteModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          setStale={setStale}
+        />
       </div>
     </div>
   );

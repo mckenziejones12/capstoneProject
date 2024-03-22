@@ -203,10 +203,11 @@ exports.patient_delete = asyncHandler(async (req, res, next) => {
 
 exports.note_create_post = asyncHandler(async (req, res, next) => {
   try {
+    console.log("NEW NOTE: ", req.body);
     const note = new Note({
       timestamp: new Date(),
-      text: req.body.text,
-      patientId: req.body.patientid,
+      text: req.body.note,
+      patientId: req.body.patientId,
       _id: req.params.noteid,
     });
     await note.save();

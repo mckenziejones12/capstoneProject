@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { NavBar } from "./NavBar";
 import { Button } from "./Button";
-import { Footer } from "./Footer";
 import { PatientFormModal } from "./PatientFormModal";
 import { Layout } from "./Layout";
 import "./Homepage.css";

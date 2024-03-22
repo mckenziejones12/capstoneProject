@@ -29,7 +29,7 @@ export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
   };
 
   return (
-    <div id="addNewPatientForm" style={{ marborder: "1px solid black" }}>
+    <div className="formDisplay" style={{ marborder: "1px solid black" }}>
       <div id="closeModalBtn" onClick={() => setShowModal(false)}>
         x
       </div>
