@@ -27,7 +27,7 @@ td {
   display: flex;
   flex-direction: column;
 }
-.noPatients {
+.emptyArray {
   text-align: center;
   margin: 100px;
 }

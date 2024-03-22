@@ -1,0 +1,9 @@
+.personalInfoTable {
+  width: 400px;
+  margin: 70px 0px;
+}
+@media (max-width: 450px) {
+  .personalInfoTable {
+    width: 350px;
+  }
+}

@@ -1,0 +1,29 @@
+.patientNotesContent {
+  text-align: center;
+}
+.patientNotesTable {
+  width: 600px;
+}
+.firstColumn {
+  width: 100px;
+}
+.createNoteButtonDiv {
+  text-align: center;
+  margin-top: 60px;
+}
+@media (max-width: 1100px) {
+  .patientNotesTable {
+    margin: 0px auto 50px auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .patientNotesTable {
+    width: 400px;
+  }
+}
+@media (max-width: 450px) {
+  .patientNotesTable {
+    width: 350px;
+  }
+}

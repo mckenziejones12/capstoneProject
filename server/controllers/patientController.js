@@ -210,9 +210,7 @@ exports.note_create_post = asyncHandler(async (req, res, next) => {
       _id: req.params.noteid,
     });
     await note.save();
-    res.status(200).json({
-      message: "New note completed successfully",
-    });
+    res.status(200).json(note);
   } catch (error) {
     res.status(500).json({
       message: "An error occurred.",

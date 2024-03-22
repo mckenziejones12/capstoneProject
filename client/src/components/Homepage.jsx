@@ -43,7 +43,7 @@ export const Homepage = () => {
       <>
         <Layout>
           <div className="pageContent">
-            <div className="noPatients">
+            <div className="emptyArray">
               There are no patient records. Add your first patient.
             </div>
             <Button type="add" onClick={() => setShowModal(true)}>
