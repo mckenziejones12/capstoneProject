@@ -4,8 +4,12 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-export const DeleteModal = ({ showModal, setShowModal, children }) => {
-  console.log(showModal);
+export const DeleteModal = ({
+  showDeleteModal,
+  setShowDeleteModal,
+  children,
+}) => {
+  console.log(showDeleteModal);
   const { patientId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,11 +22,11 @@ export const DeleteModal = ({ showModal, setShowModal, children }) => {
       navigate("/");
     });
   };
-  if (!showModal) return null;
+  if (!showDeleteModal) return null;
 
   return (
     <div className="deleteModal">
-      <div id="closeModalBtn" onClick={() => setShowModal(false)}>
+      <div id="closeModalBtn" onClick={() => setShowDeleteModal(false)}>
         x
       </div>
       <div>

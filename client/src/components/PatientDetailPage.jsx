@@ -8,8 +8,8 @@ import { useState } from "react";
 import { DeleteModal } from "./DeleteModal";
 
 export const PatientDetailPage = () => {
-  const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  console.log(showDeleteModal);
   return (
     <Layout>
       <div id="patientDetailContent">
@@ -17,11 +17,14 @@ export const PatientDetailPage = () => {
         <PatientNotesSection />
       </div>
       <div id="deletePatientButton">
-        <Button type="delete" onClick={() => setShowModal(true)}>
+        <Button type="delete" onClick={() => setShowDeleteModal(true)}>
           Delete Patient
         </Button>
       </div>
-      <DeleteModal showModal={showModal} setShowModal={setShowModal}>
+      <DeleteModal
+        showDeleteModal={showDeleteModal}
+        setShowDeleteModal={setShowDeleteModal}
+      >
         {"this patient?"}
       </DeleteModal>
     </Layout>

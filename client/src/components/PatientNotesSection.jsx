@@ -11,7 +11,6 @@ import "./PatientNotesSection.css";
 export const PatientNotesSection = () => {
   const { patientId } = useParams();
   const { noteId } = useParams();
-  const navigate = useNavigate();
   console.log("PatientId: ", patientId);
 
   const [singlePatient, setSinglePatient] = useState();
@@ -63,6 +62,15 @@ export const PatientNotesSection = () => {
     );
   }
 
+  const handleNoteUpdate = (id) => {
+    console.log("update note: ", id);
+    fetch(`api/users/patients/${patientId}/update/${id}`, {
+      method: "PATCH",
+    }).then(() => {
+      setShowModal(true);
+    });
+  };
+
   const handleNoteDelete = (id) => {
     console.log("delete note: ", id);
     fetch(`/api/users/patients/${patientId}/delete/${id}`, {
@@ -93,6 +101,7 @@ export const PatientNotesSection = () => {
                     className="noteIcons updateNote"
                     src={updateIcon}
                     alt="edit"
+                    onClick={() => handleNoteUpdate(note._id)}
                   />
                 </td>
                 <td className="iconCell">
