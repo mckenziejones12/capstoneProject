@@ -1,0 +1,21 @@
+.contentWrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.contentWrap .header {
+  flex: 0 1 auto;
+}
+
+.contentWrap .mainContent {
+  flex: 1 1 auto;
+}
+
+.contentWrap .footer {
+  flex: 0 1 100px;
+  color: darkgray;
+  margin-top: 90px;
+  padding: 20px 0px 20px 0px;
+  text-align: center;
+  max-height: 40px;
+}
