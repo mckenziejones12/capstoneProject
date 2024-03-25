@@ -1,6 +1,7 @@
 .personalInfoTable {
   width: 400px;
   margin: 70px 0px;
+  max-height: 250px;
 }
 @media (max-width: 450px) {
   .personalInfoTable {
