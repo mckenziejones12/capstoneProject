@@ -3,7 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 
 export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
-  console.log(showModal);
   if (!showModal) return null;
   const [newPatient, setNewPatient] = useState({
     firstName: "",
@@ -22,7 +21,6 @@ export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios.post("/api/users/patients", { ...newPatient }).then((res) => {
-      console.log(res.data);
       setStale(true);
     });
     setShowModal(false);

@@ -9,13 +9,11 @@ export const DeleteModal = ({
   setShowDeleteModal,
   children,
 }) => {
-  console.log(showDeleteModal);
   const { patientId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleDeletePatient = () => {
-    console.log("Delete Patient: ", patientId);
     fetch(`/api/users/patients/${patientId}`, {
       method: "DELETE",
     }).then((response) => {

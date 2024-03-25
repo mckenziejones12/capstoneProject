@@ -223,8 +223,8 @@ exports.note_create_post = asyncHandler(async (req, res, next) => {
 exports.note_update = asyncHandler(async (req, res, next) => {
   try {
     const updatedNote = await Note.findByIdAndUpdate(req.params.noteid, {
-      timestamp: new Date(),
-      text: req.body.text,
+      timestamp: req.body.date,
+      text: req.body.note,
       patientId: req.params.patientid,
     });
     console.log(updatedNote);

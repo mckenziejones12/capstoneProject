@@ -18,11 +18,9 @@ export const Homepage = () => {
     setIsLoading(true);
     fetch("/api/users/patients")
       .then((response) => {
-        console.log("Patient List: ", response);
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setPatientList(data);
         setIsLoading(false);
         setStale(false);

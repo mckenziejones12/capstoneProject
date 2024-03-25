@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 export const NoteModal = ({ showModal, setShowModal, setStale }) => {
-  console.log(showModal);
   if (!showModal) return null;
   const { patientId } = useParams();
   console.log("Patient Id in NoteModal: ", patientId);
@@ -23,7 +22,6 @@ export const NoteModal = ({ showModal, setShowModal, setStale }) => {
     axios
       .post(`/api/users/patients/${patientId}/note`, { ...newNote })
       .then((res) => {
-        console.log(res.data);
         setStale(true);
       });
     setShowModal(false);
@@ -49,7 +47,7 @@ export const NoteModal = ({ showModal, setShowModal, setStale }) => {
           <label htmlFor="note">Note: </label>
           <textarea type="text" id="note" name="note" onChange={handleInput} />
         </div>
-        <button type="submit" value="Add Note" id="addModalBtn">
+        <button type="submit" value="Add Note" className="addModalBtn">
           Add Note
         </button>
       </form>

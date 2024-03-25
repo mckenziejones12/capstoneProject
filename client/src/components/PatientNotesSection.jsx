@@ -3,6 +3,7 @@ import { React } from "react";
 import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { NoteModal } from "./NoteModal";
+import { UpdateNoteModal } from "./UpdateNoteModal";
 import { useNavigate } from "react-router";
 import updateIcon from "../images/update-icon.png";
 import deleteIcon from "../images/delete-icon.png";
@@ -11,26 +12,24 @@ import "./PatientNotesSection.css";
 export const PatientNotesSection = () => {
   const { patientId } = useParams();
   const { noteId } = useParams();
-  console.log("PatientId: ", patientId);
 
   const [singlePatient, setSinglePatient] = useState();
   const [patientNotes, setPatientNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [currentNote, setCurrentNote] = useState();
   const [stale, setStale] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     fetch(`/api/users/patients/${patientId}`)
       .then((response) => {
-        console.log("Single patient: ", response);
         return response.json();
       })
       .then((data) => {
         const patientInfo = data.patient;
         const patientNotes = data.notesForPatient;
-        console.log("Patient Information: ", patientInfo);
-        console.log("Patient Notes: ", patientNotes);
         setSinglePatient(patientInfo);
         setPatientNotes(patientNotes);
         setIsLoading(false);
@@ -62,13 +61,9 @@ export const PatientNotesSection = () => {
     );
   }
 
-  const handleNoteUpdate = (id) => {
-    console.log("update note: ", id);
-    fetch(`api/users/patients/${patientId}/update/${id}`, {
-      method: "PATCH",
-    }).then(() => {
-      setShowModal(true);
-    });
+  const handleNoteUpdate = (note) => {
+    setShowUpdateModal(true);
+    setCurrentNote(note);
   };
 
   const handleNoteDelete = (id) => {
@@ -101,7 +96,7 @@ export const PatientNotesSection = () => {
                     className="noteIcons updateNote"
                     src={updateIcon}
                     alt="edit"
-                    onClick={() => handleNoteUpdate(note._id)}
+                    onClick={() => handleNoteUpdate(note)}
                   />
                 </td>
                 <td className="iconCell">
@@ -124,6 +119,12 @@ export const PatientNotesSection = () => {
         <NoteModal
           showModal={showModal}
           setShowModal={setShowModal}
+          setStale={setStale}
+        />
+        <UpdateNoteModal
+          showUpdateModal={showUpdateModal}
+          setShowUpdateModal={setShowUpdateModal}
+          currentNote={currentNote}
           setStale={setStale}
         />
       </div>

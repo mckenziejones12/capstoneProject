@@ -11,12 +11,10 @@ export const PersonalInfoSection = () => {
     setIsLoading(true);
     fetch(`/api/users/patients/${patientId}`)
       .then((response) => {
-        console.log("Single patient: ", response);
         return response.json();
       })
       .then((data) => {
         const patientInfo = data.patient;
-        console.log("Patient Info: ", patientInfo);
         setSinglePatient(patientInfo);
         setIsLoading(false);
       });

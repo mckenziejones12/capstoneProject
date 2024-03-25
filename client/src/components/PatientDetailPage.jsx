@@ -9,7 +9,7 @@ import { DeleteModal } from "./DeleteModal";
 
 export const PatientDetailPage = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  console.log(showDeleteModal);
+  showDeleteModal;
   return (
     <Layout>
       <div id="patientDetailContent">
