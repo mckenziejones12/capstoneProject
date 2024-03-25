@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 
 export const DeleteModal = ({ showModal, setShowModal, children }) => {
   console.log(showModal);
-  if (!showModal) return null;
   const { patientId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -15,10 +14,12 @@ export const DeleteModal = ({ showModal, setShowModal, children }) => {
     console.log("Delete Patient: ", patientId);
     fetch(`/api/users/patients/${patientId}`, {
       method: "DELETE",
-    }).then((res) => {
+    }).then((response) => {
       navigate("/");
     });
   };
+  if (!showModal) return null;
+
   return (
     <div className="deleteModal">
       <div id="closeModalBtn" onClick={() => setShowModal(false)}>

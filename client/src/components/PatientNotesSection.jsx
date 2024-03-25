@@ -1,11 +1,17 @@
 import { useParams } from "react-router";
+import { React } from "react";
 import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { NoteModal } from "./NoteModal";
+import { useNavigate } from "react-router";
+import updateIcon from "../images/update-icon.png";
+import deleteIcon from "../images/delete-icon.png";
 import "./PatientNotesSection.css";
 
 export const PatientNotesSection = () => {
   const { patientId } = useParams();
+  const { noteId } = useParams();
+  const navigate = useNavigate();
   console.log("PatientId: ", patientId);
 
   const [singlePatient, setSinglePatient] = useState();
@@ -57,6 +63,15 @@ export const PatientNotesSection = () => {
     );
   }
 
+  const handleNoteDelete = (id) => {
+    console.log("delete note: ", id);
+    fetch(`/api/users/patients/${patientId}/delete/${id}`, {
+      method: "DELETE",
+    }).then((response) => {
+      setStale(true);
+    });
+  };
+
   return (
     <div className="patientNotesContent">
       <table className="patientNotesTable">
@@ -64,13 +79,30 @@ export const PatientNotesSection = () => {
           <tr id="patientNotesHeader">
             <th className="firstColumn">Date</th>
             <th className="secondColumn">Note</th>
+            <th className="edit-deleteColumn"></th>
+            <th className="edit-deleteColumn"></th>
           </tr>
           {patientNotes.map((note) => {
             const noteDate = new Date(note.timestamp).toLocaleDateString();
             return (
-              <tr className="data-row" key={note._id}>
+              <tr className="noteData-row" key={note._id}>
                 <td className="firstColumn">{noteDate}</td>
                 <td className="secondColumn">{note.text}</td>
+                <td className="iconCell">
+                  <img
+                    className="noteIcons updateNote"
+                    src={updateIcon}
+                    alt="edit"
+                  />
+                </td>
+                <td className="iconCell">
+                  <img
+                    className="noteIcons deleteNote"
+                    src={deleteIcon}
+                    alt="delete"
+                    onClick={() => handleNoteDelete(note._id)}
+                  />
+                </td>
               </tr>
             );
           })}
