@@ -2,13 +2,16 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { DeleteModal } from "./DeleteModal";
+import { UpdatePatientModal } from "./UpdatePatientModal";
 import "./PersonalInfoSection.css";
 
 export const PersonalInfoSection = () => {
   const { patientId } = useParams();
   const [singlePatient, setSinglePatient] = useState(null);
   const [isLoading, setIsLoading] = useState();
+  const [showUpdatePatientModal, setShowUpdatePatientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [stale, setStale] = useState(false);
   showDeleteModal;
 
   useEffect(() => {
@@ -66,7 +69,12 @@ export const PersonalInfoSection = () => {
           </tbody>
         </table>
         <div className="personalInfoButtons">
-          <Button type="update" onClick={handleEditPatient}>
+          <Button
+            type="update"
+            onClick={() => {
+              setShowUpdatePatientModal(true);
+            }}
+          >
             Edit Patient
           </Button>
           <div id="deletePatientButton">
@@ -74,6 +82,12 @@ export const PersonalInfoSection = () => {
               Delete Patient
             </Button>
           </div>
+          <UpdatePatientModal
+            showUpdatePatientModal={showUpdatePatientModal}
+            setShowUpdatePatientModal={setShowUpdatePatientModal}
+            singlePatient={singlePatient}
+            setStale={setStale}
+          />
           <DeleteModal
             showDeleteModal={showDeleteModal}
             setShowDeleteModal={setShowDeleteModal}
