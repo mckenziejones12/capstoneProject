@@ -5,6 +5,7 @@ import { Button } from "./Button";
 import { PatientFormModal } from "./PatientFormModal";
 import { Layout } from "./Layout";
 import "./Homepage.css";
+import { SearchBar } from "./SearchBar";
 
 export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
@@ -60,9 +61,10 @@ export const Homepage = () => {
     <>
       <Layout>
         <div className="pageContent">
+          <SearchBar />
           <table>
             <tbody>
-              <tr id="patientListHeader">
+              <tr>
                 <th>Last Name</th>
                 <th className="patientListSecondColumn">First Name</th>
               </tr>

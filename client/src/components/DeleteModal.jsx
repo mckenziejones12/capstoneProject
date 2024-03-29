@@ -1,7 +1,6 @@
 import "./DeleteModal.css";
 import { Button } from "./Button";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export const DeleteModal = ({
@@ -10,7 +9,6 @@ export const DeleteModal = ({
   children,
 }) => {
   const { patientId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleDeletePatient = () => {

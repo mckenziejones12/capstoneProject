@@ -1,0 +1,14 @@
+#searchbar {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin: 70px auto 0px;
+}
+input {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+  color: darkgray;
+  width: 200px;
+}

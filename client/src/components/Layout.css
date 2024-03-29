@@ -5,6 +5,7 @@
 }
 .contentWrap .header {
   flex: 0 1 auto;
+  text-align: center;
 }
 
 .contentWrap .mainContent {
