@@ -1,22 +1,14 @@
-import { useState } from "react";
 import { Button } from "./Button";
 import "./SearchBar.css";
 
-export const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleInput = (e) => {
-    console.log("Search Value: ", e.target.value);
-    setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
-  };
-
+export const SearchBar = ({ onSearch }) => {
   return (
     <div id="searchbar">
       <input
         type="text"
         name="findPatient"
         placeholder="Find by last name"
-        onChange={handleInput}
+        onChange={(e) => onSearch(e.target.value)}
       />
       <Button type="search">Find</Button>
     </div>

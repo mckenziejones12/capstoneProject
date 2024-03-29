@@ -9,6 +9,7 @@ import { PatientListTable } from "./PatientListTable";
 
 export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const [showModal, setShowModal] = useState(false);
   const [stale, setStale] = useState(false);
@@ -21,6 +22,7 @@ export const Homepage = () => {
       })
       .then((data) => {
         setPatientList(data);
+        setFilteredList(data);
         setIsLoading(false);
         setStale(false);
       });
@@ -51,12 +53,24 @@ export const Homepage = () => {
     );
   }
 
+  const handleSearch = (searchTerm) => {
+    const lowerCaseSearch = searchTerm.toLowerCase();
+    if (lowerCaseSearch === "") {
+      setFilteredList(patientList);
+    }
+    setFilteredList(
+      patientList.filter((patient) =>
+        patient.lastName.toLowerCase().startsWith(lowerCaseSearch)
+      )
+    );
+  };
+
   return (
     <>
       <Layout>
         <div className="pageContent">
-          <SearchBar />
-          <PatientListTable patientList={patientList} />
+          <SearchBar onSearch={handleSearch} />
+          <PatientListTable patientList={filteredList} />
           <Button type="add" onClick={() => setShowModal(true)}>
             Add New Patient
           </Button>
