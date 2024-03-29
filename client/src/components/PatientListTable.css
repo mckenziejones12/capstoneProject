@@ -1,0 +1,22 @@
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 70px auto 50px auto;
+}
+
+th,
+tr,
+td {
+  border-bottom: 1px solid black;
+  text-align: left;
+  padding: 5px;
+}
+.data-row:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.patientListSecondColumn {
+  border-left: 1px solid black;
+  width: 50%;
+}

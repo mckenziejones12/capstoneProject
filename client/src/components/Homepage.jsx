@@ -1,19 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 import { Button } from "./Button";
 import { PatientFormModal } from "./PatientFormModal";
 import { Layout } from "./Layout";
 import "./Homepage.css";
 import { SearchBar } from "./SearchBar";
+import { PatientListTable } from "./PatientListTable";
 
 export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const [showModal, setShowModal] = useState(false);
   const [stale, setStale] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,10 +25,6 @@ export const Homepage = () => {
         setStale(false);
       });
   }, [stale]);
-
-  const handlePatientClick = (patientId) => {
-    navigate(`patients/${patientId}`);
-  };
 
   if (isLoading === true) {
     return <div className="loading">Loading...</div>;
@@ -62,29 +56,7 @@ export const Homepage = () => {
       <Layout>
         <div className="pageContent">
           <SearchBar />
-          <table>
-            <tbody>
-              <tr>
-                <th>Last Name</th>
-                <th className="patientListSecondColumn">First Name</th>
-              </tr>
-              {patientList.map((patient) => {
-                return (
-                  <tr
-                    className="data-row"
-                    key={patient._id}
-                    onClick={() => handlePatientClick(patient._id)}
-                  >
-                    <td>{patient.lastName}</td>
-                    <td className="patientListSecondColumn">
-                      {patient.firstName}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-
+          <PatientListTable patientList={patientList} />
           <Button type="add" onClick={() => setShowModal(true)}>
             Add New Patient
           </Button>
