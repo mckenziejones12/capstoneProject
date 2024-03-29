@@ -87,9 +87,7 @@ export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
             <option value="CT">CT</option>
             <option value="DE">DE</option>
             <option value="DC">DC</option>
-            <option value="FL" selected>
-              FL
-            </option>
+            <option value="FL">FL</option>
             <option value="GA">GA</option>
             <option value="HI">HI</option>
             <option value="ID">ID</option>

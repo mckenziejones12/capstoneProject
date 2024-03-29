@@ -1,0 +1,65 @@
+.loginContent {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: dodgerblue;
+  box-shadow: 3px 4px 4px rgb(245, 200, 158);
+  width: 60%;
+  padding: 40px;
+  margin: 100px auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.loginTitle {
+  color: white;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 1px rgb(245, 200, 158);
+  text-align: center;
+}
+
+.loginFields {
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 5px;
+  width: 60%;
+  border: 5px solid rgb(245, 200, 158);
+}
+
+.loginField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.loginFieldTitle {
+  font-size: 16px;
+  color: black;
+}
+
+.loginForm {
+  gap: 20px;
+}
+.loginFieldInput {
+  color: black;
+  font-size: 16px;
+  width: 90%;
+}
+#loginButton {
+  padding: 8px;
+  background-color: dodgerblue;
+  color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+}
+#loginButton:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+.createLoginLink {
+  color: dodgerblue;
+  font-size: 16px;
+  text-align: center;
+}

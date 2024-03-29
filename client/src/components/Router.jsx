@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
+import { LoginPage } from "./LoginPage";
 import { PatientDetailPage } from "./PatientDetailPage";
 
 const Router = () => {
@@ -7,6 +8,10 @@ const Router = () => {
     {
       path: "/",
       element: <App />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
     },
     {
       path: "patients/:patientId",
