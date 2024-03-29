@@ -25,12 +25,21 @@ export const UpdatePatientModal = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .patch(`/api/users/patients/${singlePatient._id}`, { ...updatedPatient })
-      .then((res) => {
-        setStale(true);
-      });
-    setShowUpdatePatientModal(false);
+    if (document.getElementById("state").selectedIndex === 0) {
+      alert("Please select a state value!");
+    } else if (document.getElementById("phoneNumber").value.length <= 11) {
+      alert("Please enter phone number in the format of 555-555-5555");
+    } else {
+      axios
+        .patch(`/api/users/patients/${singlePatient._id}`, {
+          ...updatedPatient,
+        })
+        .then((res) => {
+          res.data;
+          setStale(true);
+        });
+      setShowUpdatePatientModal(false);
+    }
   };
 
   return (
@@ -82,7 +91,13 @@ export const UpdatePatientModal = ({
         </div>
         <div className="inputField">
           <label htmlFor="state">State: </label>
-          <select id="state" name="state" onChange={handleInput}>
+          <select
+            id="state"
+            name="state"
+            value={singlePatient.state}
+            onChange={handleInput}
+          >
+            <option value=""></option>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AZ">AZ</option>

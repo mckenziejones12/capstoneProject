@@ -24,8 +24,9 @@ export const PersonalInfoSection = () => {
         const patientInfo = data.patient;
         setSinglePatient(patientInfo);
         setIsLoading(false);
+        setStale(false);
       });
-  }, []);
+  }, [stale]);
 
   if (!singlePatient || isLoading) return <div>Loading...</div>;
 
