@@ -30,10 +30,6 @@ export const PersonalInfoSection = () => {
 
   if (!singlePatient || isLoading) return <div>Loading...</div>;
 
-  const handleEditPatient = () => {
-    console.log("Edit Patient Profile: ");
-  };
-
   return (
     <>
       <div className="personalInfoSection">

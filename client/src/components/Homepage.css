@@ -4,6 +4,7 @@ table {
   width: 80%;
   margin: 70px auto 50px auto;
 }
+
 th,
 tr,
 td {
@@ -15,8 +16,9 @@ td {
   background-color: lightgray;
   cursor: pointer;
 }
-.secondColumn {
+.patientListSecondColumn {
   border-left: 1px solid black;
+  width: 50%;
 }
 .singlePatient:hover {
   cursor: pointer;

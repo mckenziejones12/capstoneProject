@@ -64,7 +64,7 @@ export const Homepage = () => {
             <tbody>
               <tr id="patientListHeader">
                 <th>Last Name</th>
-                <th className="secondColumn">First Name</th>
+                <th className="patientListSecondColumn">First Name</th>
               </tr>
               {patientList.map((patient) => {
                 return (
@@ -74,7 +74,9 @@ export const Homepage = () => {
                     onClick={() => handlePatientClick(patient._id)}
                   >
                     <td>{patient.lastName}</td>
-                    <td className="secondColumn">{patient.firstName}</td>
+                    <td className="patientListSecondColumn">
+                      {patient.firstName}
+                    </td>
                   </tr>
                 );
               })}

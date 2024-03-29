@@ -7,6 +7,9 @@
 .firstColumn {
   width: 100px;
 }
+.patientNotesSecondColumn {
+  border-left: 1px solid black;
+}
 .createNoteButtonDiv {
   text-align: center;
   margin-top: 60px;

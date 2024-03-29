@@ -81,7 +81,7 @@ export const PatientNotesSection = () => {
         <tbody>
           <tr id="patientNotesHeader">
             <th className="firstColumn">Date</th>
-            <th className="secondColumn">Note</th>
+            <th className="patientNotesSecondColumn">Note</th>
             <th className="edit-deleteColumn"></th>
             <th className="edit-deleteColumn"></th>
           </tr>
@@ -90,7 +90,7 @@ export const PatientNotesSection = () => {
             return (
               <tr className="noteData-row" key={note._id}>
                 <td className="firstColumn">{noteDate}</td>
-                <td className="secondColumn">{note.text}</td>
+                <td className="patientNotesSecondColumn">{note.text}</td>
                 <td className="iconCell">
                   <img
                     className="noteIcons updateNote"
