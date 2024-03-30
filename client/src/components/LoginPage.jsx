@@ -1,6 +1,11 @@
 import "./LoginPage.css";
+import { useNavigate } from "react-router";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+  const handleCreateNewAccountClick = () => {
+    navigate("/register");
+  };
   return (
     <>
       <div className="loginContent">
@@ -9,7 +14,7 @@ export const LoginPage = () => {
           <form className="loginForm" action="">
             <div className="loginField">
               <label className="loginFieldTitle" htmlFor="userNameLogin">
-                Username:
+                Username
               </label>
               <input
                 type="text"
@@ -20,7 +25,7 @@ export const LoginPage = () => {
             </div>
             <div className="loginField">
               <label className="loginFieldTitle" htmlFor="passwordLogin">
-                Password:
+                Password
               </label>
               <input
                 type="password"
@@ -29,15 +34,16 @@ export const LoginPage = () => {
                 required
               />
             </div>
-            <button type="submit" value="Login" id="loginButton">
+            <button type="submit" value="Login" className="loginButton">
               Log In
             </button>
-            <div className="createLoginLink">
-              <a href="" className="createLoginLink">
-                Create New Account
-              </a>
-            </div>
           </form>
+          <button
+            className="loginButton createAccount"
+            onClick={handleCreateNewAccountClick}
+          >
+            Create New Account
+          </button>
         </div>
       </div>
     </>

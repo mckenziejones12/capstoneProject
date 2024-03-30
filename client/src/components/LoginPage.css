@@ -21,6 +21,9 @@
 }
 
 .loginFields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   background-color: whitesmoke;
   padding: 20px;
   border-radius: 5px;
@@ -47,19 +50,28 @@
   font-size: 16px;
   width: 90%;
 }
-#loginButton {
-  padding: 8px;
+.loginButton {
+  padding: 5px;
   background-color: dodgerblue;
   color: whitesmoke;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
+  width: 150px;
+  align-self: center;
 }
-#loginButton:hover {
+.loginButton:hover {
   cursor: pointer;
-  font-size: 16px;
 }
-.createLoginLink {
-  color: dodgerblue;
-  font-size: 16px;
+.createAccount:hover {
+  background-color: rgb(245, 200, 158);
+}
+a {
   text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  color: dodgerblue;
+}
+a:hover {
+  color: rgb(245, 200, 158);
 }
