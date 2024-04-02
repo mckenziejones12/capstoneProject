@@ -26,7 +26,6 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
     } else {
       // compare given password with hashed password
       bcrypt.compare(password, user.password).then((result) => {
-        debugger;
         console.log("result issss.....", result);
         if (result) {
           const maxAge = 2 * 60 * 60; // 2 hours in seconds
@@ -37,7 +36,6 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
           res.cookie("jwt", token, {
             httpOnly: true,
             maxAge: maxAge * 1000, // 2 hours in milliseconds
-            domain: "http://localhost:3000",
           });
           res.status(201).json({
             message: "Login successful",
