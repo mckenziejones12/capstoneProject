@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const { hash, bcrypt } = require("bcryptjs");
+const { hash } = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config;
 const jwtSecret = process.env.JWT_SECRET_KEY;
@@ -25,6 +26,7 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
     } else {
       // compare given password with hashed password
       bcrypt.compare(password, user.password).then((result) => {
+        debugger;
         console.log("result issss.....", result);
         if (result) {
           const maxAge = 2 * 60 * 60; // 2 hours in seconds
@@ -43,7 +45,7 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
           });
         } else {
           res.status(400).json({
-            message: "Login not successful",
+            message: "Login not successful: Wrong password",
           });
         }
       });
