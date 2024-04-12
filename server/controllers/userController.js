@@ -26,13 +26,15 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
     } else {
       // compare given password with hashed password
       bcrypt.compare(password, user.password).then((result) => {
-        console.log("result issss.....", result);
         if (result) {
           const maxAge = 2 * 60 * 60; // 2 hours in seconds
-          const token = jwt.sign({ id: user._id, username }, jwtSecret, {
-            expiresIn: maxAge,
-          });
-          console.log(token);
+          const token = jwt.sign(
+            { id: user._id, username, admin: user.admin },
+            jwtSecret,
+            {
+              expiresIn: maxAge,
+            }
+          );
           res.cookie("jwt", token, {
             httpOnly: true,
             maxAge: maxAge * 1000, // 2 hours in milliseconds
@@ -59,6 +61,7 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
 exports.user_register_post = asyncHandler(async (req, res, next) => {
   try {
     const { username, password, admin } = req.body;
+
     const user = await User.findOne({ username: username });
     if (user) {
       // if user exists, return error

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { adminAuth } = require("../middleware/auth");
 
 const patientController = require("../controllers/patientController");
 const userController = require("../controllers/userController");
@@ -17,13 +18,17 @@ router.get("/patients", patientController.patient_list_get);
 router.get("/patients/:patientid", patientController.single_patient_get);
 
 // POST create new patient
-router.post("/patients", patientController.patient_create_post);
+router.post("/patients", adminAuth, patientController.patient_create_post);
 
 // PATCH update patient
 router.patch("/patients/:patientid", patientController.patient_update);
 
 // DELETE delete patient
-router.delete("/patients/:patientid", patientController.patient_delete);
+router.delete(
+  "/patients/:patientid",
+  adminAuth,
+  patientController.patient_delete
+);
 
 // POST create note for single patient
 router.post("/patients/:patientid/note", patientController.note_create_post);
@@ -37,6 +42,7 @@ router.patch(
 // DELETE note
 router.delete(
   "/patients/:patientid/delete/:noteid",
+  adminAuth,
   patientController.note_delete
 );
 
