@@ -6,6 +6,7 @@ import { Layout } from "./Layout";
 import "./Homepage.css";
 import { SearchBar } from "./SearchBar";
 import { PatientListTable } from "./PatientListTable";
+import { useNavigate } from "react-router";
 
 export const Homepage = () => {
   const [patientList, setPatientList] = useState([]);
@@ -13,11 +14,15 @@ export const Homepage = () => {
   const [isLoading, setIsLoading] = useState();
   const [showModal, setShowModal] = useState(false);
   const [stale, setStale] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
     fetch("/api/users/patients")
       .then((response) => {
+        if (!response.ok) {
+          navigate("/login");
+        }
         return response.json();
       })
       .then((data) => {
@@ -27,6 +32,11 @@ export const Homepage = () => {
         setStale(false);
       });
   }, [stale]);
+
+  const addPatientIfAuthorized = () => {
+    // If authorized (admin===true), setShowModal(true)
+    // If not authorized (admin===false), alert "Not authorized"
+  };
 
   if (isLoading === true) {
     return <div className="loading">Loading...</div>;

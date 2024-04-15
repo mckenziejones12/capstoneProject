@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { DeleteModal } from "./DeleteModal";
 import { UpdatePatientModal } from "./UpdatePatientModal";
 import "./PersonalInfoSection.css";
+import { useNavigate } from "react-router";
 
 export const PersonalInfoSection = () => {
   const { patientId } = useParams();
@@ -12,12 +13,17 @@ export const PersonalInfoSection = () => {
   const [showUpdatePatientModal, setShowUpdatePatientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [stale, setStale] = useState(false);
+  const navigate = useNavigate();
   showDeleteModal;
 
   useEffect(() => {
     setIsLoading(true);
     fetch(`/api/users/patients/${patientId}`)
       .then((response) => {
+        if (!response.ok) {
+          navigate("/login");
+        }
+
         return response.json();
       })
       .then((data) => {
