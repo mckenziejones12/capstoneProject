@@ -9,6 +9,7 @@ import { PatientListTable } from "./PatientListTable";
 import { useNavigate } from "react-router";
 
 export const Homepage = () => {
+  const [userList, setUserList] = useState();
   const [patientList, setPatientList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [isLoading, setIsLoading] = useState();
@@ -26,8 +27,12 @@ export const Homepage = () => {
         return response.json();
       })
       .then((data) => {
-        setPatientList(data);
-        setFilteredList(data);
+        console.log("result:", data);
+        setPatientList(data.allPatients);
+        console.log("data.allPatients: ", data.allPatients);
+        setFilteredList(data.allPatients);
+        setUserList(data.allUsers);
+        console.log("data.allUsers: ", data.allUsers);
         setIsLoading(false);
         setStale(false);
       });

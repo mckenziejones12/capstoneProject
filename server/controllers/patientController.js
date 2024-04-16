@@ -19,6 +19,7 @@ exports.patient_list_get = asyncHandler(async (req, res, next) => {
 
   let allPatients = [];
   let allNotes = [];
+  let allUsers = [];
 
   try {
     allPatients = await Patient.find()
@@ -27,7 +28,9 @@ exports.patient_list_get = asyncHandler(async (req, res, next) => {
     console.log(allPatients);
     allNotes = await Note.find();
     console.log(allNotes);
-    return res.status(200).json(allPatients);
+    allUsers = await User.find();
+    console.log(allUsers);
+    return res.status(200).json({ allPatients, allUsers });
   } catch (error) {
     res.status(500).json({
       message: "An error occured",
