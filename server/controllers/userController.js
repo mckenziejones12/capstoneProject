@@ -42,6 +42,7 @@ exports.user_login_post = asyncHandler(async (req, res, next) => {
           res.status(201).json({
             message: "Login successful",
             user: user._id,
+            token: token,
           });
         } else {
           res.status(400).json({
