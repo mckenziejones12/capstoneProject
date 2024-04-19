@@ -38,11 +38,6 @@ export const Homepage = () => {
       });
   }, [stale]);
 
-  const addPatientIfAuthorized = () => {
-    // If authorized (admin===true), setShowModal(true)
-    // If not authorized (admin===false), alert "Not authorized"
-  };
-
   if (isLoading === true) {
     return <div className="loading">Loading...</div>;
   }
