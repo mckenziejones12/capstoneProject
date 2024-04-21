@@ -22,7 +22,7 @@ router.get(
 );
 
 // POST create new patient
-router.post("/patients", adminAuth, patientController.patient_create_post);
+router.post("/patients", userAuth, patientController.patient_create_post);
 
 // PATCH update patient
 router.patch(
