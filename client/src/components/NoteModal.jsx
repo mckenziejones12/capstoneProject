@@ -40,12 +40,19 @@ export const NoteModal = ({ showModal, setShowModal, setStale }) => {
             type="date"
             id="timestamp"
             name="timestamp"
+            required
             onChange={handleInput}
           />
         </div>
         <div className="inputField noteInputField">
           <label htmlFor="note">Note: </label>
-          <textarea type="text" id="note" name="note" onChange={handleInput} />
+          <textarea
+            type="text"
+            id="note"
+            name="note"
+            required
+            onChange={handleInput}
+          />
         </div>
         <button type="submit" value="Add Note" className="addModalBtn">
           Add Note

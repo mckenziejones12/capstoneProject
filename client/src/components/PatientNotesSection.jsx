@@ -7,6 +7,7 @@ import { UpdateNoteModal } from "./UpdateNoteModal";
 import { useNavigate } from "react-router";
 import updateIcon from "../images/update-icon.png";
 import deleteIcon from "../images/delete-icon.png";
+import { UnauthorizedModal } from "./UnauthorizedModal";
 import "./PatientNotesSection.css";
 
 export const PatientNotesSection = () => {
@@ -18,7 +19,9 @@ export const PatientNotesSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showUnauthorizedModal, setShowUnauthorizedModal] = useState(false);
   const [currentNote, setCurrentNote] = useState();
+  const [isUnauthorized, setUnauthorized] = useState(false);
   const [stale, setStale] = useState(false);
 
   useEffect(() => {
@@ -71,7 +74,13 @@ export const PatientNotesSection = () => {
     fetch(`/api/users/patients/${patientId}/delete/${id}`, {
       method: "DELETE",
     }).then((response) => {
-      setStale(true);
+      if (response.status === 401) {
+        setUnauthorized(true);
+        setShowUnauthorizedModal(true);
+      } else {
+        setStale(true);
+        setUnauthorized(false);
+      }
     });
   };
 
@@ -127,6 +136,12 @@ export const PatientNotesSection = () => {
           currentNote={currentNote}
           setStale={setStale}
         />
+        {isUnauthorized && (
+          <UnauthorizedModal
+            showUnauthorizedModal={showUnauthorizedModal}
+            setShowUnauthorizedModal={setShowUnauthorizedModal}
+          />
+        )}
       </div>
     </div>
   );

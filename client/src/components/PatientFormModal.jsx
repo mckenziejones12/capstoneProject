@@ -149,7 +149,7 @@ export const PatientFormModal = ({ showModal, setShowModal, setStale }) => {
             onChange={handleInput}
           />
         </div>
-        <button type="submit" value="Add Patient" id="addModalBtn">
+        <button type="submit" value="Add Patient" className="addModalBtn">
           Add Patient
         </button>
       </form>

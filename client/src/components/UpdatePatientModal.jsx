@@ -170,7 +170,7 @@ export const UpdatePatientModal = ({
             value={updatedPatient.d_birth}
           />
         </div>
-        <button type="submit" value="Update" id="addModalBtn">
+        <button type="submit" value="Update" className="addModalBtn">
           Update
         </button>
       </form>

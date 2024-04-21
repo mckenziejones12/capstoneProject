@@ -38,7 +38,7 @@ h3 {
   letter-spacing: 1px;
 }
 
-#addModalBtn {
+.addModalBtn {
   margin-top: 10px;
   border: 2px solid dodgerblue;
   color: dodgerblue;
@@ -47,7 +47,7 @@ h3 {
   letter-spacing: 1px;
   padding: 5px;
 }
-#addModalBtn:hover {
+.addModalBtn:hover {
   border: 2px solid rgb(245, 200, 158);
   cursor: pointer;
   color: rgb(245, 200, 158);
