@@ -9,7 +9,7 @@ export const UnauthorizedModal = ({
       <div>Warning: you are not authorized to perform this action!</div>
 
       <div
-        id="closeUnauthModalBtn"
+        className="closeUnauthModalBtn"
         onClick={() => setShowUnauthorizedModal(false)}
       >
         x
