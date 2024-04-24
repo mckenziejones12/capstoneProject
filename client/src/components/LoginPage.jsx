@@ -14,6 +14,8 @@ export const LoginPage = () => {
     password: "",
   });
 
+  const [loginError, setLoginError] = useState(false);
+
   const handleUsernameInput = (e) => {
     setUserLogin({ ...userLogin, username: e.target.value });
   };
@@ -22,12 +24,33 @@ export const LoginPage = () => {
     setUserLogin({ ...userLogin, password: e.target.value });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios.post("/api/users", { ...userLogin }).then((response) => {
+  //     if (response.status === 400 || response.status === 401) {
+  //       setLoginError(true);
+  //     } else {
+  //       navigate("/");
+  //       setLoginError(false);
+  //     }
+  //   });
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("/api/users", { ...userLogin }).then((response) => {
-      console.log("log in was successfull");
-      navigate("/");
-    });
+    axios
+      .post("/api/users", { ...userLogin })
+      .then((response) => {
+        response.data;
+        navigate("/");
+        setLoginError(false);
+      })
+      .catch((error) => {
+        if (error.response.status === 400 || error.response.status === 401) {
+          console.log("wrong user or pass");
+          setLoginError(true);
+        }
+      });
   };
 
   return (
@@ -35,6 +58,10 @@ export const LoginPage = () => {
       <div className="loginContent">
         <div className="loginTitle">Capstone Records</div>
         <div className="loginFields">
+          {loginError && (
+            <div id="loginError">Incorrect username or password</div>
+          )}
+
           <form className="loginForm" action="" onSubmit={handleSubmit}>
             <div className="loginField">
               <label className="loginFieldTitle" htmlFor="username">
