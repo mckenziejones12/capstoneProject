@@ -1,7 +1,6 @@
 import { describe, expect, test, vitest } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Button } from "../components/Button";
-import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 
 describe("Button", () => {
