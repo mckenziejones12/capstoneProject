@@ -11,6 +11,8 @@ export const RegisterAccountPage = () => {
     admin: Boolean,
   });
 
+  const [registerError, setRegisterError] = useState(false);
+
   const handleUsernameInput = (e) => {
     setRegisterUser({ ...registerUser, username: e.target.value });
   };
@@ -46,10 +48,17 @@ export const RegisterAccountPage = () => {
         .post("/api/users/register", { ...registerUser })
         .then((response) => {
           console.log("New user registered successfully.");
+          setRegisterError(false);
           alert(
             "You have created a new account successfully. Please login with your new username and password."
           );
           navigate("/login");
+        })
+        .catch((error) => {
+          if (error.response.status === 500) {
+            console.log("user already exists");
+            setRegisterError(true);
+          }
         });
     }
   };
@@ -59,6 +68,14 @@ export const RegisterAccountPage = () => {
       <div className="loginContent">
         <div className="loginTitle">Capstone Records</div>
         <div className="loginFields">
+          {registerError && (
+            <div
+              id="registerError"
+              style={{ color: "red", textAlign: "center", fontSize: "14px" }}
+            >
+              User already exists. Try logging in or create a new username.
+            </div>
+          )}
           <form className="loginForm" action="" onSubmit={handleSubmit}>
             <div className="loginField">
               <label className="loginFieldTitle" htmlFor="userNameLogin">
@@ -68,6 +85,7 @@ export const RegisterAccountPage = () => {
                 type="text"
                 className="loginFieldInput"
                 name="userNameLogin"
+                id="userNameLogin"
                 onChange={handleUsernameInput}
                 required
               />
@@ -78,7 +96,7 @@ export const RegisterAccountPage = () => {
               </label>
               <input
                 type="password"
-                id="password"
+                id="passwordLogin"
                 className="loginFieldInput"
                 name="passwordLogin"
                 onChange={handlePasswordInput}
@@ -86,14 +104,14 @@ export const RegisterAccountPage = () => {
               />
             </div>
             <div className="loginField">
-              <label className="loginFieldTitle" htmlFor="passwordLogin">
+              <label className="loginFieldTitle" htmlFor="confirmPasswordLogin">
                 Confirm Password
               </label>
               <input
                 type="password"
                 className="loginFieldInput"
-                id="confirmPassword"
-                name="passwordLogin"
+                id="confirmPasswordLogin"
+                name="confirmPasswordLogin"
                 onChange={handlePasswordInput}
                 required
               />

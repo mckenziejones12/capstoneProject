@@ -24,18 +24,6 @@ export const LoginPage = () => {
     setUserLogin({ ...userLogin, password: e.target.value });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios.post("/api/users", { ...userLogin }).then((response) => {
-  //     if (response.status === 400 || response.status === 401) {
-  //       setLoginError(true);
-  //     } else {
-  //       navigate("/");
-  //       setLoginError(false);
-  //     }
-  //   });
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -71,6 +59,7 @@ export const LoginPage = () => {
                 type="text"
                 className="loginFieldInput"
                 name="username"
+                id="username"
                 onChange={handleUsernameInput}
                 required
               />
@@ -83,6 +72,7 @@ export const LoginPage = () => {
                 type="password"
                 className="loginFieldInput"
                 name="password"
+                id="password"
                 onChange={handlePasswordInput}
                 required
               />
