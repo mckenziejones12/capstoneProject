@@ -7,6 +7,3 @@ router.get("/", function (req, res, next) {
 });
 
 module.exports = router;
-
-/*If user login is authenticated --> res.redirect("/patients").
-  If user login != authenticated --> res.redirect("/users") */
