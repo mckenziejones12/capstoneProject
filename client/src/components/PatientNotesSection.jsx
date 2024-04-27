@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { NoteModal } from "./NoteModal";
 import { UpdateNoteModal } from "./UpdateNoteModal";
-import { useNavigate } from "react-router";
 import updateIcon from "../images/update-icon.png";
 import deleteIcon from "../images/delete-icon.png";
 import { UnauthorizedModal } from "./UnauthorizedModal";
@@ -70,7 +69,6 @@ export const PatientNotesSection = () => {
   };
 
   const handleNoteDelete = (id) => {
-    console.log("delete note: ", id);
     fetch(`/api/users/patients/${patientId}/delete/${id}`, {
       method: "DELETE",
     }).then((response) => {

@@ -6,7 +6,6 @@ import axios from "axios";
 export const NoteModal = ({ showModal, setShowModal, setStale }) => {
   if (!showModal) return null;
   const { patientId } = useParams();
-  console.log("Patient Id in NoteModal: ", patientId);
   const [newNote, setNewNote] = useState({
     timestamp: new Date().toLocaleDateString(),
     note: "",

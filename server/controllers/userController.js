@@ -9,7 +9,6 @@ const User = require("../models/User");
 
 exports.user_login_post = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
-  console.log("username:", req.body);
 
   if (!username || !password) {
     return res.status(400).json({
@@ -71,7 +70,6 @@ exports.user_register_post = asyncHandler(async (req, res, next) => {
       });
     }
     const passwordHash = await hash(password, 10);
-    console.log(passwordHash);
     const newUser = new User({
       username: username,
       password: passwordHash,
@@ -81,7 +79,6 @@ exports.user_register_post = asyncHandler(async (req, res, next) => {
     res.status(200).json({
       message: "Your new account was created successfully!",
     });
-    console.log(newUser);
   } catch (error) {
     return res.status(500).json({
       message: "Error occured",

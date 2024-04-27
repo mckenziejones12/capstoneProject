@@ -18,7 +18,6 @@ export const RegisterAccountPage = () => {
   };
 
   const handlePasswordInput = (e) => {
-    console.log("password: ", e.target.value);
     setRegisterUser({ ...registerUser, password: e.target.value });
   };
 
@@ -28,7 +27,6 @@ export const RegisterAccountPage = () => {
     } else {
       setRegisterUser.admin = false;
     }
-    console.log("is admin?: ", e.target.value);
     setRegisterUser({ ...registerUser, admin: setRegisterUser.admin });
   };
 
@@ -36,8 +34,6 @@ export const RegisterAccountPage = () => {
     const password = document.getElementById("password").value;
     const confirmedPassword = document.getElementById("confirmPassword").value;
     e.preventDefault();
-    console.log("password: ", password);
-    console.log("confirmedPassword: ", confirmedPassword);
 
     if (password !== confirmedPassword) {
       alert("Please make sure passwords match");
@@ -47,7 +43,6 @@ export const RegisterAccountPage = () => {
       axios
         .post("/api/users/register", { ...registerUser })
         .then((response) => {
-          console.log("New user registered successfully.");
           setRegisterError(false);
           alert(
             "You have created a new account successfully. Please login with your new username and password."
@@ -56,7 +51,6 @@ export const RegisterAccountPage = () => {
         })
         .catch((error) => {
           if (error.response.status === 500) {
-            console.log("user already exists");
             setRegisterError(true);
           }
         });

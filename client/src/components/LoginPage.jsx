@@ -35,7 +35,6 @@ export const LoginPage = () => {
       })
       .catch((error) => {
         if (error.response.status === 400 || error.response.status === 401) {
-          console.log("wrong user or pass");
           setLoginError(true);
         }
       });

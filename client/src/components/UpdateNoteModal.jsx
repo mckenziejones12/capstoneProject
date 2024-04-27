@@ -9,15 +9,12 @@ export const UpdateNoteModal = ({
   currentNote,
 }) => {
   if (!showUpdateModal) return null;
-  console.log("currentNote: ", currentNote);
   const { patientId } = useParams();
   const [updatedNote, setUpdatedNote] = useState({
     date: new Date(currentNote.timestamp).toISOString().substring(0, 10),
     note: currentNote.text,
     patientId: patientId,
   });
-
-  console.log(updatedNote);
 
   const handleInput = (e) => {
     setUpdatedNote({

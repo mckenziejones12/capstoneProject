@@ -27,12 +27,9 @@ export const Homepage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("result:", data);
         setPatientList(data.allPatients);
-        console.log("data.allPatients: ", data.allPatients);
         setFilteredList(data.allPatients);
         setUserList(data.allUsers);
-        console.log("data.allUsers: ", data.allUsers);
         setIsLoading(false);
         setStale(false);
       });

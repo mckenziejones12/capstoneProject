@@ -4,8 +4,6 @@ const asyncHandler = require("express-async-handler");
 
 exports.adminAuth = asyncHandler(async (req, res, next) => {
   const token = req.cookies.jwt;
-  console.log("this is the admin authorization");
-  console.log("token: ", token);
   if (token) {
     jwt.verify(token, jwtSecret, (err, decodedToken) => {
       if (err) {
@@ -25,7 +23,6 @@ exports.adminAuth = asyncHandler(async (req, res, next) => {
 
 exports.userAuth = asyncHandler(async (req, res, next) => {
   const token = req.cookies.jwt;
-  console.log("user token: ", token);
   if (token) {
     jwt.verify(token, jwtSecret, (err, decodedToken) => {
       next();

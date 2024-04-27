@@ -38,7 +38,6 @@ async function userCreate(index, username, password, admin) {
   const user = new User(userDetail);
   users[index] = user;
   await user.save();
-  console.log(`Added user: ${username}`);
 }
 
 async function patientCreate(
@@ -63,7 +62,6 @@ async function patientCreate(
   const patient = new Patient(patientDetail);
   patients[index] = patient;
   await patient.save();
-  console.log(`New patient added: ${(lastName, firstName)}`);
 }
 
 async function noteCreate(index, timestamp, text, patientId) {
@@ -75,7 +73,6 @@ async function noteCreate(index, timestamp, text, patientId) {
   const note = new Note(noteDetail);
   notes[index] = note;
   await note.save();
-  console.log(`New note added: ${text}`);
 }
 
 async function createUsers() {

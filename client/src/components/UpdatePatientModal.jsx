@@ -8,7 +8,6 @@ export const UpdatePatientModal = ({
   setStale,
 }) => {
   if (!showUpdatePatientModal) return null;
-  console.log(singlePatient);
   const [updatedPatient, setUpdatedPatient] = useState({
     firstName: singlePatient.firstName,
     lastName: singlePatient.lastName,

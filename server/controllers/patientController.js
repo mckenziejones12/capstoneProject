@@ -25,11 +25,8 @@ exports.patient_list_get = asyncHandler(async (req, res, next) => {
     allPatients = await Patient.find()
       .collation({ locale: "en" })
       .sort({ lastName: 1 });
-    console.log(allPatients);
     allNotes = await Note.find();
-    console.log(allNotes);
     allUsers = await User.find();
-    console.log(allUsers);
     return res.status(200).json({ allPatients, allUsers });
   } catch (error) {
     res.status(500).json({
@@ -46,9 +43,6 @@ exports.single_patient_get = asyncHandler(async (req, res, next) => {
       Patient.findById(req.params.patientid).exec(),
       Note.find({ patientId: req.params.patientid }, "text timestamp").exec(),
     ]);
-    console.log("req.params.patientid: ", req.params.patientid);
-    console.log("patient: ", patient),
-      console.log("notes for patient: ", notesForPatient);
     if (patient === null) {
       res.status(404).json({
         message: "Patient not found.",
@@ -97,7 +91,6 @@ exports.patient_create_post = [
   // Process request after validation and sanitization
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log("any errors: ", errors);
     // Create new patient with escaped/trimmed data and new ID
     const patient = new Patient({
       firstName: req.body.firstName,
@@ -111,7 +104,6 @@ exports.patient_create_post = [
     });
     // If create new patient form not completed correctly, throw error.
     if (!errors.isEmpty()) {
-      console.log("do we go in here");
       res.status(400).json({
         error: res.status(400).json({ errors: errors.array() }),
       });
@@ -158,14 +150,11 @@ exports.patient_update = [
   // Process request after data is escaped/trimmed
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log("Errors: ", errors);
     if (!errors.isEmpty()) {
-      console.log("is it doing anythingggg?");
       res.status(400).json({
         error: res.status(400).json({ errors: errors.array() }),
       });
     } else {
-      console.log(req.body);
       // Form data valid. Update and save.
       const updatedPatient = await Patient.findByIdAndUpdate(
         req.params.patientid,
@@ -182,7 +171,6 @@ exports.patient_update = [
       ).exec();
       res.status(204).send();
       q;
-      console.log("Updated patient: ", updatedPatient);
     }
   }),
 ];
@@ -193,8 +181,6 @@ exports.patient_delete = asyncHandler(async (req, res, next) => {
       Patient.findByIdAndDelete(req.params.patientid).exec(),
       Note.deleteMany({ patientId: req.params.patientid }).exec(),
     ]);
-    console.log(deletedPatient);
-    console.log(deletedPatientNotes);
     res.status(200).send("Patient successfully deleted.");
   } catch (error) {
     res.status(500).json({
@@ -206,7 +192,6 @@ exports.patient_delete = asyncHandler(async (req, res, next) => {
 
 exports.note_create_post = asyncHandler(async (req, res, next) => {
   try {
-    console.log("NEW NOTE: ", req.body);
     const note = new Note({
       timestamp: new Date(),
       text: req.body.note,
@@ -230,7 +215,6 @@ exports.note_update = asyncHandler(async (req, res, next) => {
       text: req.body.note,
       patientId: req.params.patientid,
     });
-    console.log(updatedNote);
     res.status(200).json({
       message: "Note updated successfully.",
     });
@@ -245,5 +229,4 @@ exports.note_update = asyncHandler(async (req, res, next) => {
 exports.note_delete = asyncHandler(async (req, res, next) => {
   const deletedNote = await Note.findByIdAndDelete(req.params.noteid);
   res.status(200).send("Note deleted successfully.");
-  console.log(deletedNote);
 });
