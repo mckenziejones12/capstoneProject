@@ -26,7 +26,11 @@ const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err) => err);
 async function main() {
-  await mongoose.connect(mongoDB);
+  // NOTE: when exporting app.js as agent for supertest
+  // we should exlcude connecting to the real database
+  if (process.env.NODE_ENV !== "test") {
+    await mongoose.connect(mongoDB);
+  }
 }
 
 // middleware
