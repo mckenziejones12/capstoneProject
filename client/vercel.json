@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://capstoneproject-ee1x.onrender.com/$1"
+      "destination": "https://capstoneproject-ee1x.onrender.com/api/v1/$1"
     },
     {
       "source": "/(.*)",
