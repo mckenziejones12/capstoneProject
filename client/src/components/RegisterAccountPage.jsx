@@ -31,8 +31,10 @@ export const RegisterAccountPage = () => {
   };
 
   const handleSubmit = (e) => {
-    const password = document.getElementById("password").value;
-    const confirmedPassword = document.getElementById("confirmPassword").value;
+    const password = document.getElementById("passwordLogin").value;
+    const confirmedPassword = document.getElementById(
+      "confirmPasswordLogin"
+    ).value;
     e.preventDefault();
 
     if (password !== confirmedPassword) {
@@ -43,6 +45,7 @@ export const RegisterAccountPage = () => {
       axios
         .post("/api/users/register", { ...registerUser })
         .then((response) => {
+          console.log("is anything happeining here?");
           setRegisterError(false);
           alert(
             "You have created a new account successfully. Please login with your new username and password."
